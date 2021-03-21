@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
     <p>
@@ -23,12 +23,7 @@
 
 <style>
 .hello {
-  background-image: url("../../src/assets/banner.png");
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #302F35;
+  color: #302f35;
 }
 </style>
 

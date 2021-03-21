@@ -1,12 +1,10 @@
 <template>
   <div>
-    <b-button v-b-modal.modal-update>New Appointment</b-button>
+    <b-button @click="onClick">Update Appointment</b-button>
 
     <b-modal
-      id="modal-update"
-      cancel-only
-      no-stacking
-      title="Make your Appointment"
+      v-bind:id="`${appointment.item.name}-${appointment.item.id}`"
+      title="Update your Appointment"
     >
       <div>
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -64,8 +62,7 @@
             </div>
           </template>
 
-          <b-button @click="log">LOG</b-button>
-          <b-button type="submit" variant="primary">Submit</b-button>
+          <b-button type="submit" variant="primary">Update</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
         </b-form>
       </div>
@@ -76,7 +73,7 @@
 
 <script>
 export default {
-  props: ["appointment"],
+  props: ["appointment", "id"],
   data() {
     return {
       form: {
@@ -85,22 +82,22 @@ export default {
         date: this.appointment.item.date,
         time: this.appointment.item.time,
         remark: this.appointment.item.remark,
+        id: this.appointment.item.id,
       },
       services: ["Haircut", "Haircut & Shave (+/- 60 min.)", "Hot Towel Shave"],
       show: true,
-      id: this.appointment.index,
     };
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      this.$store.dispatch("addAppointment", {
+      this.$store.dispatch("updateAppointment", {
         index: this.index,
         appointment: this.form,
       });
       setTimeout(() => this.$store.dispatch("fetchAppointments"), 500);
       this.onReset;
-      this.$bvModal.hide("modal-1");
+      this.$bvModal.hide(`${this.form.name}-${this.form.id}`);
     },
     onReset(event) {
       event.preventDefault();
@@ -116,11 +113,9 @@ export default {
         this.show = true;
       });
     },
-    created() {
-      console.log("here");
-    },
-    mounted() {
-      console.log("here");
+    onClick() {
+      const id = `${this.form.name}-${this.form.id}`;
+      this.$bvModal.show(id);
     },
   },
 };

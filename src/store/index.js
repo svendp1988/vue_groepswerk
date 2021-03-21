@@ -61,6 +61,32 @@ const store = new Vuex.Store({
                     state.commit('_updateError', { error });
                 });
         },
+        deleteAppointment: function (state, payload) {
+            state.commit('_updateError', { error: '' });
+            let { index, appointment } = payload;
+            fetch(url + appointment.id,
+                {
+                    method: "DELETE",
+                    body: JSON.stringify(appointment),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then((response) => {
+                    if (response.status == 200 || response.status == 202 || response.status == 204) {
+                        return response.json();
+                    } else {
+                        throw `error with status ${response.status}`;
+                    }
+                })
+                .then((appointment) => {
+                    state.commit('_deleteAppointment', { index, appointment });
+                })
+                .catch((error) => {
+                    state.commit('_updateError', { error });
+                });
+        },
         updateAppointment: function (state, payload) {
             state.commit('_updateError', { error: '' });
             let { index, appointment } = payload;
@@ -98,8 +124,12 @@ const store = new Vuex.Store({
             state.appointments = payload.appointments;
         },
         _addAppointment(state, payload) {
-            let { index, appointment } = payload
+            let { index, appointment } = payload;
             state.appointments[index] = appointment;
+        },
+        _deleteAppointment(state, payload) {
+            let { index } = payload;
+            state.appointments.splice(index, 1);
         },
         _updateAppointment(state, payload) {
             let { index, appointment } = payload;
