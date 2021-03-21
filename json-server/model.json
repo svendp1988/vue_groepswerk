@@ -1,0 +1,36 @@
+{
+  "appointments": [
+    {
+      "id": 1,
+      "name": "Sven",
+      "service": "Haircut",
+      "date": "15/03/2021",
+      "time": "14.00",
+      "remark": ""
+    },
+    {
+      "name": "Sven",
+      "service": "Haircut & Shave (+/- 60 min.)",
+      "date": "2021-03-21",
+      "time": "10:00:00",
+      "remark": "",
+      "id": 3
+    },
+    {
+      "name": "Sven",
+      "service": "Haircut",
+      "date": "2021-03-21",
+      "time": "11:59:00",
+      "remark": "",
+      "id": 4
+    },
+    {
+      "name": "sven",
+      "service": "Hot Towel Shave",
+      "date": "2021-03-31",
+      "time": "00:00:00",
+      "remark": "",
+      "id": 5
+    }
+  ]
+}
