@@ -37,7 +37,7 @@ const store = new Vuex.Store({
         },
         addNotifications: function (state, payload) {
             state.commit('_updateError', { error: '' });
-            let { index, notifications } = payload;
+            let { index, notification } = payload;
             fetch(url,
                 {
                     method: "POST",
