@@ -3,11 +3,11 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-let url = 'http://localhost:3000/appointments/';
+let url = 'http://localhost:3000/notifications/';
 const store = new Vuex.Store({
     // https://vuex.vuejs.org/guide/state.html
     state: {
-        notification: [],
+        notifications: [],
         error: ''
     },
     // https://vuex.vuejs.org/guide/getters.html
@@ -38,6 +38,7 @@ const store = new Vuex.Store({
         addNotifications: function (state, payload) {
             state.commit('_updateError', { error: '' });
             let { index, notification } = payload;
+            console.log({index})
             fetch(url,
                 {
                     method: "POST",
@@ -107,7 +108,7 @@ const store = new Vuex.Store({
                     }
                 })
                 .then((notification) => {
-                    state.commit('_updateAppointment', { index, notification });
+                    state.commit('_updateNotification', { index, notification });
                 })
                 .catch((error) => {
                     state.commit('_updateError', { error });

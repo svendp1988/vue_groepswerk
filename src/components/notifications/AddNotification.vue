@@ -86,7 +86,7 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      this.$store.dispatch("addNotification", {
+      this.$store.dispatch("addNotifications", {
         index: this.index,
         notification: this.form,
       });
