@@ -1,10 +1,10 @@
 <template>
   <div>
-    <b-button @click="onClick">Update Appointment</b-button>
+    <b-button @click="onClick">Update Notification</b-button>
 
     <b-modal
-      v-bind:id="`${appointment.item.name}-${appointment.item.id}`"
-      title="Update your Appointment"
+      v-bind:id="`${notification.item.name}-${notification.item.id}`"
+      title="Update your Notification"
     >
       <div>
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -16,7 +16,7 @@
               required
             ></b-form-input>
           </b-form-group>
-
+          <!--
           <b-form-group id="input-group-2" label="Service:" label-for="input-2">
             <b-form-select
               id="input-2"
@@ -25,7 +25,7 @@
               required
             ></b-form-select>
           </b-form-group>
-
+-->
           <template>
             <div>
               <label for="example-datepicker">Choose a date</label>
@@ -73,29 +73,29 @@
 
 <script>
 export default {
-  props: ["appointment", "id"],
+  props: ["notification", "id"],
   data() {
     return {
       form: {
-        name: this.appointment.item.name,
-        service: this.appointment.item.service,
-        date: this.appointment.item.date,
-        time: this.appointment.item.time,
-        remark: this.appointment.item.remark,
-        id: this.appointment.item.id,
+        name: this.notification.item.name,
+        //service: this.notification.item.service,
+        date: this.notification.item.date,
+        time: this.notification.item.time,
+        remark: this.notification.item.remark,
+        id: this.notification.item.id,
       },
-      services: ["Haircut", "Haircut & Shave (+/- 60 min.)", "Hot Towel Shave"],
+      //services: ["Haircut", "Haircut & Shave (+/- 60 min.)", "Hot Towel Shave"],
       show: true,
     };
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      this.$store.dispatch("updateAppointment", {
+      this.$store.dispatch("updateNotification", {
         index: this.index,
-        appointment: this.form,
+        notification: this.form,
       });
-      setTimeout(() => this.$store.dispatch("fetchAppointments"), 500);
+      setTimeout(() => this.$store.dispatch("fetchNotifications"), 500);
       this.onReset;
       this.$bvModal.hide(`${this.form.name}-${this.form.id}`);
     },
@@ -103,7 +103,7 @@ export default {
       event.preventDefault();
       // Reset our form values
       this.form.name = "";
-      this.form.service = "";
+      //this.form.service = "";
       this.form.date = "";
       this.form.time = "";
       this.form.remark = "";

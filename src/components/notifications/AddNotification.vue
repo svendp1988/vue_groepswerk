@@ -1,8 +1,8 @@
 <template>
   <div>
-    <b-button v-b-modal.modal-1>New Appointment</b-button>
+    <b-button v-b-modal.modal-1>New Notification</b-button>
 
-    <b-modal id="modal-1" cancel-only no-stacking title="Make your Appointment">
+    <b-modal id="modal-1" cancel-only no-stacking title="Make your Notification">
       <div>
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
           <b-form-group id="input-group-1" label="Name:" label-for="input-1">
@@ -13,7 +13,7 @@
               required
             ></b-form-input>
           </b-form-group>
-
+          <!--
           <b-form-group id="input-group-2" label="Service:" label-for="input-2">
             <b-form-select
               id="input-2"
@@ -22,7 +22,7 @@
               required
             ></b-form-select>
           </b-form-group>
-
+          -->
           <template>
             <div>
               <label for="example-datepicker">Choose a date</label>
@@ -74,23 +74,23 @@ export default {
     return {
       form: {
         name: "",
-        service: "",
+        //service: "",
         date: "",
         time: "",
         remark: "",
       },
-      services: ["Haircut", "Haircut & Shave (+/- 60 min.)", "Hot Towel Shave"],
+      //services: ["Haircut", "Haircut & Shave (+/- 60 min.)", "Hot Towel Shave"],
       show: true,
     };
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      this.$store.dispatch("addAppointment", {
+      this.$store.dispatch("addNotification", {
         index: this.index,
-        appointment: this.form,
+        notification: this.form,
       });
-      setTimeout(() => this.$store.dispatch("fetchAppointments"), 500);
+      setTimeout(() => this.$store.dispatch("fetchNotifications"), 500);
       this.onReset;
       this.$bvModal.hide("modal-1");
     },
@@ -98,7 +98,7 @@ export default {
       event.preventDefault();
       // Reset our form values
       this.form.name = "";
-      this.form.service = "";
+      //this.form.service = "";
       this.form.date = "";
       this.form.time = "";
       this.form.remark = "";

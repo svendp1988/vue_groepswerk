@@ -5,7 +5,7 @@
       light
       hover
       :busy="isBusy"
-      :items="$store.state.appointments"
+      :items="$store.state.notifications"
       :fields="fields"
     >
       <template #table-busy>
@@ -20,48 +20,48 @@
       </template>
       <template #cell(actions)="row">
         <b-dropdown text="☰" right style="font-size: 32px" no-caret>
-          <b-dropdown-item
-            ><update-appointment v-bind:appointment="row" />
+          <b-dropdown-item>
+            <update-notification v-bind:notification="row" />
           </b-dropdown-item>
           <b-dropdown-item size="sm" @click="log(row)" class="mr-2">
-            <b-button @click="deleteAppointment(row)"
-              >Delete Appointment</b-button
+            <b-button @click="deleteNotification(row)"
+              >Delete Notification</b-button
             >
           </b-dropdown-item>
         </b-dropdown>
       </template>
     </b-table>
-    <add-appointment />
+    <add-notification />
   </div>
 </template>
 
 <script>
-import AddAppointment from "./AddAppointment.vue";
-import UpdateAppointment from "./UpdateAppointment.vue";
+import AddNotification from "./AddNotification.vue";
+import UpdateNotification from "./UpdateNotification.vue";
 export default {
-  components: { AddAppointment, UpdateAppointment },
+  components: { AddNotification, UpdateNotification },
   data() {
     return {
       isBusy: false,
-      fields: ["name", "service", "date", "time", "remark", "actions"],
+      fields: ["name", "date", "time", "remark", "actions"],
     };
   },
   methods: {
-    getAppointments: function () {
+    getNotifications: function () {
       this.isBusy = true;
-      this.$store.dispatch("fetchAppointments");
+      this.$store.dispatch("fetchNotifications");
       setTimeout(() => (this.isBusy = false), 500);
     },
-    deleteAppointment: function (row) {
+    deleteNotification: function (row) {
       let index = row.index;
-      let appointment = row.item;
+      let notification = row.item;
       this.isBusy = true;
-      this.$store.dispatch("deleteAppointment", { index, appointment });
+      this.$store.dispatch("deleteNotification", { index, notification });
       setTimeout(() => (this.isBusy = false), 500);
     },
   },
   beforeMount() {
-    this.getAppointments();
+    this.getNotifications();
   },
 };
 </script>

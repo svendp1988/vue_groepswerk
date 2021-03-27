@@ -7,19 +7,19 @@ let url = 'http://localhost:3000/appointments/';
 const store = new Vuex.Store({
     // https://vuex.vuejs.org/guide/state.html
     state: {
-        appointments: [],
+        notification: [],
         error: ''
     },
     // https://vuex.vuejs.org/guide/getters.html
     getters: {
-        numberOfAppointments: (state) => state.appointments.length
+        numberOfNotifications: (state) => state.notifications.length
     },
     // actions zijn asynchroon, aangeroepen via dispatch
     // https://vuex.vuejs.org/guide/actions.html
     actions: {
-        fetchAppointments: function (state) {
+        fetchNotifications: function (state) {
             state.commit('_updateError', { error: '' });
-            state.commit('_emptyAppointments');
+            state.commit('_emptyNotifications');
             fetch(url)
                 .then((response) => {
                     if (response.status == 200) {
@@ -28,20 +28,20 @@ const store = new Vuex.Store({
                         throw `error with status ${response.status}`;
                     }
                 })
-                .then((appointments) => {
-                    state.commit('_addAppointments', { appointments });
+                .then((notifications) => {
+                    state.commit('_addNotifications', { notifications });
                 })
                 .catch((error) => {
                     state.commit('_updateError', { error });
                 });
         },
-        addAppointment: function (state, payload) {
+        addNotifications: function (state, payload) {
             state.commit('_updateError', { error: '' });
-            let { index, appointment } = payload;
+            let { index, notifications } = payload;
             fetch(url,
                 {
                     method: "POST",
-                    body: JSON.stringify(appointment),
+                    body: JSON.stringify(notification),
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
@@ -54,20 +54,20 @@ const store = new Vuex.Store({
                         throw `error with status ${response.status}`;
                     }
                 })
-                .then((appointment) => {
-                    state.commit('_addAppointment', { index, appointment });
+                .then((notification) => {
+                    state.commit('_addNotification', { index, notification });
                 })
                 .catch((error) => {
                     state.commit('_updateError', { error });
                 });
         },
-        deleteAppointment: function (state, payload) {
+        deleteNotification: function (state, payload) {
             state.commit('_updateError', { error: '' });
-            let { index, appointment } = payload;
-            fetch(url + appointment.id,
+            let { index, notification } = payload;
+            fetch(url + notification.id,
                 {
                     method: "DELETE",
-                    body: JSON.stringify(appointment),
+                    body: JSON.stringify(notification),
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
@@ -80,20 +80,20 @@ const store = new Vuex.Store({
                         throw `error with status ${response.status}`;
                     }
                 })
-                .then((appointment) => {
-                    state.commit('_deleteAppointment', { index, appointment });
+                .then((notification) => {
+                    state.commit('_deleteNotification', { index, notification });
                 })
                 .catch((error) => {
                     state.commit('_updateError', { error });
                 });
         },
-        updateAppointment: function (state, payload) {
+        updateNotification: function (state, payload) {
             state.commit('_updateError', { error: '' });
-            let { index, appointment } = payload;
-            fetch(url + appointment.id,
+            let { index, notification } = payload;
+            fetch(url + notification.id,
                 {
                     method: "PUT",
-                    body: JSON.stringify(appointment),
+                    body: JSON.stringify(notification),
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
@@ -106,8 +106,8 @@ const store = new Vuex.Store({
                         throw `error with status ${response.status}`;
                     }
                 })
-                .then((appointment) => {
-                    state.commit('_updateAppointment', { index, appointment });
+                .then((notification) => {
+                    state.commit('_updateAppointment', { index, notification });
                 })
                 .catch((error) => {
                     state.commit('_updateError', { error });
@@ -117,28 +117,28 @@ const store = new Vuex.Store({
     // synchrone wijzigingen van state
     // https://vuex.vuejs.org/guide/mutations.html
     mutations: {
-        _emptyAppointments(state) {
-            state.appointments = [];
+        _emptyNotifications(state) {
+            state.notifications = [];
         },
-        _addAppointments(state, payload) {
-            state.appointments = payload.appointments;
+        _addNotifications(state, payload) {
+            state.notifications = payload.notifications;
         },
-        _addAppointment(state, payload) {
-            let { index, appointment } = payload;
-            state.appointments[index] = appointment;
+        _addNotification(state, payload) {
+            let { index, notification } = payload;
+            state.notifications[index] = notification;
         },
-        _deleteAppointment(state, payload) {
+        _deleteNotification(state, payload) {
             let { index } = payload;
-            state.appointments.splice(index, 1);
+            state.notifications.splice(index, 1);
         },
-        _updateAppointment(state, payload) {
-            let { index, appointment } = payload;
-            state.appointments[index] = appointment;
+        _updateNotification(state, payload) {
+            let { index, notification } = payload;
+            state.notifications[index] = notification;
         },
         _updateError(state, payload) {
             state.error = payload.error;
         }
-
+        
     }
 });
 

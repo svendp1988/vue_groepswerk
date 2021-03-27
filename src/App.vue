@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/appointments">Appointments</router-link>
+      <router-link to="/notifications">Notifications</router-link>
     </div>
     <router-view />
   </div>
@@ -20,7 +20,6 @@
 body,
 html {
   /* The image used */
-  background-image: url("https://i2.wp.com/www.csscodelab.com/wp-content/uploads/2019/11/stripe-hero-background-effect-html-css.png?fit=1062%2C631&ssl=1");
 
   /* Full height */
   height: 100%;
