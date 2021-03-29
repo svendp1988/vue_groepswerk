@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
-import store from "./store"
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import store from './store'
+import VueToast from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-default.css'
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
@@ -12,6 +14,8 @@ import router from './router'
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
+//
+Vue.use(VueToast)
 
 Vue.config.productionTip = false
 

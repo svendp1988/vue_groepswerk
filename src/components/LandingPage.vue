@@ -1,21 +1,29 @@
- <template>
+<template>
   <div class="hello">
     <h1>{{ msg }}</h1>
     <p>
       Come in for a glass of whisky, a cigar, throw some darts, get a haircut
-      and hot towel shave!<br />
+      and hot towel shave!
     </p>
     <h3>Stay in touch!</h3>
     <ul>
       <li>
-        <a href="https://github.com/svendp1988" target="_blank" rel="noopener"
-          >github</a
+        <a
+          href="https://github.com/svendp1988"
+          target="_blank"
+          rel="noopener"
         >
+          Github
+        </a>
       </li>
       <li>
-        <a href="https:/facebook.com" target="_blank" rel="noopener"
-          >facebook</a
+        <a
+          href="https:/facebook.com"
+          target="_blank"
+          rel="noopener"
         >
+          Facebook
+        </a>
       </li>
     </ul>
   </div>
@@ -29,11 +37,14 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
-    msg: String,
-  },
-};
+    msg: {
+      type: String,
+      default: ''
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -36,32 +36,32 @@
 </template>
 
 <script>
-import AddNotification from "./AddNotification.vue";
-import UpdateNotification from "./UpdateNotification.vue";
+import AddNotification from './AddNotification.vue'
+import UpdateNotification from './UpdateNotification.vue'
 export default {
   components: { AddNotification, UpdateNotification },
-  data() {
+  data () {
     return {
       isBusy: false,
-      fields: ["name", "date", "time", "remark", "actions"],
-    };
+      fields: ['name', 'date', 'time', 'remark', 'actions']
+    }
   },
   methods: {
     getNotifications: function () {
-      this.isBusy = true;
-      this.$store.dispatch("fetchNotifications");
-      setTimeout(() => (this.isBusy = false), 500);
+      this.isBusy = true
+      this.$store.dispatch('fetchNotifications')
+      setTimeout(() => (this.isBusy = false), 500)
     },
     deleteNotification: function (row) {
-      let index = row.index;
-      let notification = row.item;
-      this.isBusy = true;
-      this.$store.dispatch("deleteNotification", { index, notification });
-      setTimeout(() => (this.isBusy = false), 500);
-    },
+      const index = row.index
+      const notification = row.item
+      this.isBusy = true
+      this.$store.dispatch('deleteNotification', { index, notification })
+      setTimeout(() => (this.isBusy = false), 500)
+    }
   },
-  beforeMount() {
-    this.getNotifications();
-  },
-};
+  beforeMount () {
+    this.getNotifications()
+  }
+}
 </script>

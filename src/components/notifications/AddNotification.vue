@@ -67,47 +67,47 @@
   </div>
 </template>
 
-
 <script>
+
 export default {
-  data() {
+  data () {
     return {
       form: {
-        name: "",
-        //service: "",
-        date: "",
-        time: "",
-        remark: "",
+        name: '',
+        // service: "",
+        date: '',
+        time: '',
+        remark: ''
       },
-      //services: ["Haircut", "Haircut & Shave (+/- 60 min.)", "Hot Towel Shave"],
-      show: true,
-    };
+      // services: ["Haircut", "Haircut & Shave (+/- 60 min.)", "Hot Towel Shave"],
+      show: true
+    }
   },
   methods: {
-    onSubmit(event) {
-      event.preventDefault();
-      this.$store.dispatch("addNotifications", {
+    onSubmit (event) {
+      event.preventDefault()
+      this.$store.dispatch('addNotifications', {
         index: this.index,
-        notification: this.form,
-      });
-      setTimeout(() => this.$store.dispatch("fetchNotifications"), 500);
-      this.onReset;
-      this.$bvModal.hide("modal-1");
+        notification: this.form
+      })
+      setTimeout(() => this.$store.dispatch('fetchNotifications'), 500)
+      // this.onReset
+      this.$bvModal.hide('modal-1')
     },
-    onReset(event) {
-      event.preventDefault();
+    onReset (event) {
+      event.preventDefault()
       // Reset our form values
-      this.form.name = "";
-      //this.form.service = "";
-      this.form.date = "";
-      this.form.time = "";
-      this.form.remark = "";
+      this.form.name = ''
+      // this.form.service = "";
+      this.form.date = ''
+      this.form.time = ''
+      this.form.remark = ''
       // Trick to reset/clear native browser form validation state
-      this.show = false;
+      this.show = false
       this.$nextTick(() => {
-        this.show = true;
-      });
-    },
-  },
-};
+        this.show = true
+      })
+    }
+  }
+}
 </script>

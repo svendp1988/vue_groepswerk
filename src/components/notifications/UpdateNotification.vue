@@ -70,53 +70,52 @@
   </div>
 </template>
 
-
 <script>
 export default {
-  props: ["notification", "id"],
-  data() {
+  props: ['notification', 'id'],
+  data () {
     return {
       form: {
         name: this.notification.item.name,
-        //service: this.notification.item.service,
+        // service: this.notification.item.service,
         date: this.notification.item.date,
         time: this.notification.item.time,
         remark: this.notification.item.remark,
-        id: this.notification.item.id,
+        id: this.notification.item.id
       },
-      //services: ["Haircut", "Haircut & Shave (+/- 60 min.)", "Hot Towel Shave"],
-      show: true,
-    };
+      // services: ["Haircut", "Haircut & Shave (+/- 60 min.)", "Hot Towel Shave"],
+      show: true
+    }
   },
   methods: {
-    onSubmit(event) {
-      event.preventDefault();
-      this.$store.dispatch("updateNotification", {
+    onSubmit (event) {
+      event.preventDefault()
+      this.$store.dispatch('updateNotification', {
         index: this.index,
-        notification: this.form,
-      });
-      setTimeout(() => this.$store.dispatch("fetchNotifications"), 500);
-      this.onReset;
-      this.$bvModal.hide(`${this.form.name}-${this.form.id}`);
+        notification: this.form
+      })
+      setTimeout(() => this.$store.dispatch('fetchNotifications'), 500)
+      // this.onReset
+      this.$bvModal.hide(`${this.form.name}-${this.form.id}`)
     },
-    onReset(event) {
-      event.preventDefault();
+    onReset (event) {
+      event.preventDefault()
       // Reset our form values
-      this.form.name = "";
-      //this.form.service = "";
-      this.form.date = "";
-      this.form.time = "";
-      this.form.remark = "";
+      this.form.name = ''
+      // this.form.service = "";
+      this.form.date = ''
+      this.form.time = ''
+      this.form.remark = ''
       // Trick to reset/clear native browser form validation state
-      this.show = false;
+      this.show = false
       this.$nextTick(() => {
-        this.show = true;
-      });
+        this.show = true
+      })
     },
-    onClick() {
-      const id = `${this.form.name}-${this.form.id}`;
-      this.$bvModal.show(id);
-    },
-  },
-};
+    onClick () {
+      const id = `${this.form.name}-${this.form.id}`
+      this.$bvModal.show(id)
+    }
+  }
+}
 </script>

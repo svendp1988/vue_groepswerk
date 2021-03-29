@@ -6,12 +6,12 @@
 
 <script>
 // @ is an alias to /src
-import LandingPage from "../components/LandingPage.vue";
+import LandingPage from '../components/LandingPage.vue'
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
-    LandingPage,
-  },
-};
+    LandingPage
+  }
+}
 </script>
