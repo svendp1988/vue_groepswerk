@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button v-b-modal.modal-1>New Appointment</b-button>
+    <b-button v-b-modal.modal-1>New Notification</b-button>
 
     <b-modal id="modal-1" cancel-only no-stacking title="Make your Appointment">
       <div>

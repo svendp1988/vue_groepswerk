@@ -1,5 +1,5 @@
 {
-  "appointments": [
+  "appointmentsb": [
     {
       "name": "Sven",
       "service": "Haircut",
@@ -9,13 +9,13 @@
       "id": 4
     }
     ],
-  "notifications": [
+  "appointments": [
     {
+      "date": "11:59:00",
       "building": "E",
       "floor": "1",
       "room": "501",
-      "date": "11:59:00",
-      "description": "",
+      "description": "Issue 1",
       "action": "",
       "status": "open",
       "id": 1

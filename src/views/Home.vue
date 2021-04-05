@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <landing-page msg="Welcome to Svens Premium Barbershop" />
+    <landing-page msg="Welcome to the PXL notification App" />
   </div>
 </template>
 

@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 let url = 'http://localhost:3000/appointments/';
+// let url = 'D:\\GitHub\\vue_groepswerk\\json-server';
 const store = new Vuex.Store({
     // https://vuex.vuejs.org/guide/state.html
     state: {

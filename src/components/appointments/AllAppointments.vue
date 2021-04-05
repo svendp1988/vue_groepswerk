@@ -1,5 +1,7 @@
 <template>
   <div>
+    <add-appointment />
+    <a> <br/>> </a>
     <b-table
       striped
       light
@@ -31,7 +33,7 @@
         </b-dropdown>
       </template>
     </b-table>
-    <add-appointment />
+
   </div>
 </template>
 
@@ -43,7 +45,7 @@ export default {
   data() {
     return {
       isBusy: false,
-      fields: ["name", "service", "date", "time", "remark", "actions"],
+      fields: ["date", "building", "floor", "room", "description", "status", "actions"],
     };
   },
   methods: {
