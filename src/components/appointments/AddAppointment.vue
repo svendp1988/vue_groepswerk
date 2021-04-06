@@ -17,7 +17,7 @@
             <b-form-select
                 id="input-2"
                 v-model="form.building"
-                :options="buildings"
+                :options="buildings.name"
                 required
             ></b-form-select>
           </b-form-group>
@@ -93,9 +93,9 @@ export default {
         status: "",
         // id: "",
       },
-      buildings: ["A", "B", "C", "D", "E", "F"],
-      floors: ["EG", "1st", "2nd", "3rd"],
-      status: ["Open", "Closed", "In progress"],
+      buildings: this.$store.state.buildings,
+      floors: this.$store.state.floors,
+      status: this.$store.state.status,
       show: true,
     };
   },
@@ -128,5 +128,10 @@ export default {
       });
     },
   },
+  beforeMount() {
+      this.$store.dispatch("fetchBuildings");
+      this.$store.dispatch("fetchFloors");
+      this.$store.dispatch("fetchStatus");
+    }
 };
 </script>

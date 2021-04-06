@@ -20,5 +20,13 @@
       "status": "Open",
       "id": 1
     }
-  ]
+  ],
+  "buildings": [ 
+    {"name": "A", 
+    "floors": ["eg", "1st", "2nd"]},
+    {"name": "B",
+    "floors": ["eg", "1st"]},
+  {"name": "E",
+    "floors": ["banaan", "wortel"]}],
+  "status": [ "Open", "Closed", "In progress" ]
 }

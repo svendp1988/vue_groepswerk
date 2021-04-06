@@ -1,7 +1,7 @@
 <template>
   <div>
     <add-appointment />
-    <a> <br/>> </a>
+    <a> <br/> </a>
     <b-table
       striped
       light

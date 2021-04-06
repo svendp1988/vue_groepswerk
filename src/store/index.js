@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-let url = 'http://localhost:3000/appointments/';
+let url = 'http://localhost:3000/';
 // let url = 'D:\\GitHub\\vue_groepswerk\\json-server';
 const store = new Vuex.Store({
     // https://vuex.vuejs.org/guide/state.html
@@ -21,7 +21,7 @@ const store = new Vuex.Store({
         fetchAppointments: function (state) {
             state.commit('_updateError', { error: '' });
             state.commit('_emptyAppointments');
-            fetch(url)
+            fetch(url + 'appointments/')
                 .then((response) => {
                     if (response.status == 200) {
                         return response.json();
@@ -39,7 +39,7 @@ const store = new Vuex.Store({
         addAppointment: function (state, payload) {
             state.commit('_updateError', { error: '' });
             let { index, appointment } = payload;
-            fetch(url,
+            fetch(url + 'appointments/',
                 {
                     method: "POST",
                     body: JSON.stringify(appointment),
@@ -65,7 +65,7 @@ const store = new Vuex.Store({
         deleteAppointment: function (state, payload) {
             state.commit('_updateError', { error: '' });
             let { index, appointment } = payload;
-            fetch(url + appointment.id,
+            fetch(url + 'appointments/' + appointment.id,
                 {
                     method: "DELETE",
                     body: JSON.stringify(appointment),
@@ -91,7 +91,7 @@ const store = new Vuex.Store({
         updateAppointment: function (state, payload) {
             state.commit('_updateError', { error: '' });
             let { index, appointment } = payload;
-            fetch(url + appointment.id,
+            fetch(url + 'appointments/' + appointment.id,
                 {
                     method: "PUT",
                     body: JSON.stringify(appointment),
@@ -113,7 +113,61 @@ const store = new Vuex.Store({
                 .catch((error) => {
                     state.commit('_updateError', { error });
                 });
-        }
+        },
+        fetchBuildings: function (state) {
+            state.commit('_updateError', { error: '' });
+            state.commit('_emptyBuildings');
+            fetch(url + 'buildings/')
+                .then((response) => {
+                    if (response.status == 200) {
+                        return response.json();
+                    } else {
+                        throw `error with status ${response.status}`;
+                    }
+                })
+                .then((buildings) => {
+                    state.commit('_addBuildings', { buildings });
+                })
+                .catch((error) => {
+                    state.commit('_updateError', { error });
+                });
+        },
+        // fetchFloors: function (state) {
+        //     state.commit('_updateError', { error: '' });
+        //     state.commit('_emptyFloors');
+        //     fetch(url + 'floors/')
+        //         .then((response) => {
+        //             if (response.status == 200) {
+        //                 return response.json();
+        //             } else {
+        //                 throw `error with status ${response.status}`;
+        //             }
+        //         })
+        //         .then((floors) => {
+        //             state.commit('_addFloors', { floors });
+        //         })
+        //         .catch((error) => {
+        //             state.commit('_updateError', { error });
+        //         });
+        // },
+        fetchStatus: function (state) {
+            state.commit('_updateError', { error: '' });
+            state.commit('_emptyStatus');
+            fetch(url + 'status/')
+                .then((response) => {
+                    if (response.status == 200) {
+                        return response.json();
+                    } else {
+                        throw `error with status ${response.status}`;
+                    }
+                })
+                .then((status) => {
+                    state.commit('_addStatus', { status });
+                })
+                .catch((error) => {
+                    state.commit('_updateError', { error });
+                });
+        },
     },
     // synchrone wijzigingen van state
     // https://vuex.vuejs.org/guide/mutations.html
@@ -138,8 +192,22 @@ const store = new Vuex.Store({
         },
         _updateError(state, payload) {
             state.error = payload.error;
+        },
+        _emptyBuildings(state) {
+            state.buildings = [];
+        },
+        _emptyStatus(state) {
+            state.status = [];
+        },
+        _addBuildings(state, payload) {
+            state.buildings = payload.buildings;
+        },
+        _addFloors(state, payload) {
+            state.floors = payload.floors;
+        },
+        _addStatus(state, payload) {
+            state.status = payload.status;
         }
-
     }
 });
 

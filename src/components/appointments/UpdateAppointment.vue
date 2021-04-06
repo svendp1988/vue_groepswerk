@@ -20,7 +20,8 @@
             <b-form-select
               id="input-2"
               v-model="form.building"
-              :options="buildings"
+              :options="names"
+              @change="onBuildingClick"
               required
             ></b-form-select>
           </b-form-group>
@@ -28,7 +29,7 @@
             <b-form-select
                 id="input-3"
                 v-model="form.floor"
-                :options="floors"
+                v-bind:options="() => getOptions()"
                 required
             ></b-form-select>
           </b-form-group>
@@ -98,10 +99,11 @@ export default {
         status: this.appointment.item.status,
         id: this.appointment.item.id,
       },
-      buildings: ["A", "B", "C", "D", "E", "F"],
-      floors: ["EG", "1st", "2nd", "3rd"],
+      buildings: this.$store.state.buildings,
+      // floors: ["EG", "1st", "2nd", "3rd"],
       status: ["Open", "Closed", "In progress"],
       show: true,
+      names: this.$store.state.buildings.map(building => building.name)
     };
   },
   methods: {
@@ -136,6 +138,20 @@ export default {
       const id = `${this.form.name}-${this.form.id}`;
       this.$bvModal.show(id);
     },
+    onBuildingClick() {
+      this.$forceUpdate();
+      console.log(this.$store.state.buildings.find(building => this.form.building === building.name).floors);
+    },
+    getOptions() {
+      if (this.form.building === "") return null;
+      return this.$store.state.buildings.find(building => this.form.building === building.name).floors;
+    }
   },
+  created() {
+    this.$store.dispatch("fetchBuildings");
+  },
+  updated() {
+    this.getOptions();
+  }
 };
 </script>
