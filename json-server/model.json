@@ -11,8 +11,9 @@
     ],
   "notifications": [
     {
+      "name": "Steven VS",
       "building": "E",
-      "floor": "1",
+      "floor": "1st",
       "room": "501",
       "date": "11:59:00",
       "description": "",

@@ -27,7 +27,7 @@
           </b-dropdown-item>
           <b-dropdown-item size="sm" @click="log(row)" class="mr-2">
             <b-button @click="deleteAppointment(row)"
-              >Delete Appointment</b-button
+              >Delete Notification</b-button
             >
           </b-dropdown-item>
         </b-dropdown>
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       isBusy: false,
-      fields: ["date", "building", "floor", "room", "description", "status", "actions"],
+      fields: ["date", "name", "building", "floor", "room", "description", "status", "actions"],
     };
   },
   methods: {

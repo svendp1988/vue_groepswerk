@@ -8,16 +8,16 @@
       "remark": "",
       "id": 4
     }
-    ],
+  ],
   "appointments": [
     {
-      "date": "11:59:00",
+      "name": "Steven VS",
       "building": "E",
-      "floor": "1",
+      "floor": "1st",
       "room": "501",
+      "date": "2021-04-08",
       "description": "Issue 1",
-      "action": "",
-      "status": "open",
+      "status": "Open",
       "id": 1
     }
   ]

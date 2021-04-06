@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button @click="onClick">Update Appointment</b-button>
+    <b-button @click="onClick">Edit Notification</b-button>
 
     <b-modal
       v-bind:id="`${appointment.item.name}-${appointment.item.id}`"
@@ -16,19 +16,41 @@
               required
             ></b-form-input>
           </b-form-group>
-
-          <b-form-group id="input-group-2" label="Service:" label-for="input-2">
+          <b-form-group id="input-group-2" label="Building:" label-for="input-2">
             <b-form-select
               id="input-2"
-              v-model="form.service"
-              :options="services"
+              v-model="form.building"
+              :options="buildings"
               required
             ></b-form-select>
           </b-form-group>
-
+          <b-form-group id="input-group-2" label="Floor:" label-for="input-3">
+            <b-form-select
+                id="input-3"
+                v-model="form.floor"
+                :options="floors"
+                required
+            ></b-form-select>
+          </b-form-group>
+          <b-form-group id="input-group-1" label="Room:" label-for="input-4">
+            <b-form-input
+                id="input-4"
+                v-model="form.room"
+                placeholder="Enter Room number"
+                required
+            ></b-form-input>
+            <b-form-group id="input-group-2" label="Status:" label-for="input-5">
+              <b-form-select
+                  id="input-5"
+                  v-model="form.status"
+                  :options="status"
+                  required
+              ></b-form-select>
+            </b-form-group>
+          </b-form-group>
           <template>
             <div>
-              <label for="example-datepicker">Choose a date</label>
+              <label>Choose a date</label>
               <b-form-datepicker
                 id="example-datepicker"
                 v-model="form.date"
@@ -38,21 +60,11 @@
           </template>
           <template>
             <div>
-              <label for="datepicker">Choose a date</label>
-              <b-form-timepicker
-                id="timepicker"
-                v-model="form.time"
-                locale="en"
-              ></b-form-timepicker>
-            </div>
-          </template>
-          <template>
-            <div>
-              <b-form-group label="Remark:" label-for="textarea" class="mb-0">
+              <b-form-group label="Description:" label-for="textarea" class="mb-0">
                 <b-form-textarea
                   id="textarea"
-                  v-model="text"
-                  placeholder="Enter something..."
+                  v-model="form.description"
+                  placeholder="Give description of issue..."
                   rows="3"
                   max-rows="6"
                 ></b-form-textarea>
@@ -61,7 +73,6 @@
               <pre class="mt-3 mb-0">{{ text }}</pre>
             </div>
           </template>
-
           <b-button type="submit" variant="primary">Update</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
         </b-form>
@@ -78,13 +89,18 @@ export default {
     return {
       form: {
         name: this.appointment.item.name,
-        service: this.appointment.item.service,
+        building: this.appointment.item.building,
+        floor: this.appointment.item.floor,
+        room: this.appointment.item.room,
         date: this.appointment.item.date,
-        time: this.appointment.item.time,
-        remark: this.appointment.item.remark,
+        // time: this.appointment.item.time,
+        description: this.appointment.item.description,
+        status: this.appointment.item.status,
         id: this.appointment.item.id,
       },
-      services: ["Haircut", "Haircut & Shave (+/- 60 min.)", "Hot Towel Shave"],
+      buildings: ["A", "B", "C", "D", "E", "F"],
+      floors: ["EG", "1st", "2nd", "3rd"],
+      status: ["Open", "Closed", "In progress"],
       show: true,
     };
   },
@@ -103,10 +119,13 @@ export default {
       event.preventDefault();
       // Reset our form values
       this.form.name = "";
-      this.form.service = "";
+      this.form.building = "";
+      this.form.floor = "";
+      this.form.room = "";
       this.form.date = "";
-      this.form.time = "";
-      this.form.remark = "";
+      this.form.description = "";
+      this.form.status = "";
+      this.form.id = "";
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {
